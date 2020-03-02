@@ -60,7 +60,7 @@ header div.sub_media {
   left: 0;
 }
 
-section.search form input[type="text"] {
+section.search input[type="text"] {
   width: 100%;
   height: 46px;
   border: none !important;
