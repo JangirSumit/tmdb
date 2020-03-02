@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import debounce from "./common/debounce";
 import logo from "./logo.svg";
+import ItemTile from "./components/itemTile";
 import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
+
+    this.state = {
+      data: {}
+    };
   }
 
   loadData() {
@@ -20,7 +25,7 @@ class App extends Component {
       })
       .then(d => {
         self.setState({
-          data: d
+          data: d.results
         });
       })
       .catch(error => {
@@ -65,6 +70,13 @@ class App extends Component {
             </div>
           </section>
         </div>
+        <section className="content">
+          <div className="results flex">
+            {this.state.data &&
+              this.state.data.length &&
+              this.state.data.map(d => <ItemTile key={d.id} data={d} />)}
+          </div>
+        </section>
       </div>
     );
   }
