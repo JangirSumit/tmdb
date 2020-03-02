@@ -34,7 +34,11 @@ class ItemTile extends Component {
             </div>
           </div>
 
-          <p className="overview">{this.props.data.overview}</p>
+          <p className="overview">
+            {this.props.data.overview.length > 200
+              ? this.props.data.overview.substring(0, 200) + "..."
+              : this.props.data.overview}
+          </p>
         </div>
       </div>
     );
