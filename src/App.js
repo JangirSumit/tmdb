@@ -10,37 +10,56 @@ class App extends Component {
 
     this.state = {
       data: {},
-      g:[],
-      langs:[]
+      g: [],
+      langs: []
     };
   }
 
-  async loadData() {
-    let url =
-      "https://api.themoviedb.org/3/search/movie?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US&query=" +
-      document.getElementById("search_text").value;
+  async loadData(page) {
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&page=${page}&language=en-US&query=${
+      document.getElementById("search_text").value
+    }`;
     let data = fetch(url);
     let d = await (await data).json();
-      this.setState({
-        data: d
-      });
+    this.setState({
+      data: d,
+      page: page,
+      total_pages: d.total_pages
+    });
   }
 
   onKeyUp = debounce(event => {
-    this.loadData();
+    this.loadData(1);
   }, 400);
 
-  async componentDidMount(){
-    let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US");
-    let languages = fetch("https://api.themoviedb.org/3/configuration/languages?api_key=c98d68ce201dd1845ce26a43f4f9d9d7");
+  async componentDidMount() {
+    let genres = fetch(
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US"
+    );
+    let languages = fetch(
+      "https://api.themoviedb.org/3/configuration/languages?api_key=c98d68ce201dd1845ce26a43f4f9d9d7"
+    );
 
     let g = await (await genres).json();
-    let langs = await (await languages).json()
+    let langs = await (await languages).json();
 
     this.setState({
-      g:g,
-      langs:langs
+      g: g,
+      langs: langs
     });
+  }
+
+  async onPrevClick() {
+    let currentPage = this.state.page;
+    let total_pages = this.state.total_pages;
+    if (currentPage > 1) await this.loadData(--currentPage);
+  }
+
+  async onNextClick() {
+    let currentPage = this.state.page;
+    let total_pages = this.state.total_pages;
+    if (currentPage > 0 && currentPage < total_pages)
+      await this.loadData(++currentPage);
   }
 
   render() {
@@ -77,20 +96,57 @@ class App extends Component {
           </section>
         </div>
         <section className="content">
-          <div style={{paddingTop:"10px"}}>
-            <span style={{paddingTop:"10px",fontSize:"18px",fontWeight:"bold"}}>{this.state.data && this.state.data.results && "Total Results: " + this.state.data.total_results+ " | "} </span>
-            <small>{this.state.data.page ? "Total Pages "+this.state.data.total_pages :""}</small>
-            <small>{this.state.data.page ? " | Page "+this.state.data.page :""}</small>
-            </div>
+          <div style={{ paddingTop: "10px" }}>
+            <span
+              style={{
+                paddingTop: "10px",
+                fontSize: "18px",
+                fontWeight: "bold"
+              }}
+            >
+              {this.state.data &&
+                this.state.data.results &&
+                "Total Results: " + this.state.data.total_results + " | "}{" "}
+            </span>
+            <small>
+              {this.state.data.page
+                ? "Total Pages " + this.state.data.total_pages
+                : ""}
+            </small>
+            <small>
+              {this.state.data.page ? " | Page " + this.state.data.page : ""}
+            </small>
+          </div>
           <div className="results flex">
             {this.state.data &&
-              this.state.data.results && this.state.data.results.length &&
-              this.state.data.results.map(d => <ItemTile key={d.id} data={d} g={this.state.g} langs={this.state.langs}/>)}
+              this.state.data.results &&
+              this.state.data.results.length &&
+              this.state.data.results.map(d => (
+                <ItemTile
+                  key={d.id}
+                  data={d}
+                  g={this.state.g}
+                  langs={this.state.langs}
+                />
+              ))}
           </div>
         </section>
-        <section className="footer">
-                Assumption : Showing only Page 1
-              </section>      
+        {this.state.data && this.state.data.total_pages > 1 ? (
+          <section className="pagination">
+            <img
+              className="prev-page"
+              onClick={event => this.onPrevClick(event)}
+              src="https://img.icons8.com/flat_round/64/000000/circled-left-2--v1.png"
+            />
+            <img
+              className="next-page"
+              onClick={event => this.onNextClick(event)}
+              src="https://img.icons8.com/flat_round/64/000000/circled-right-2--v1.png"
+            />
+          </section>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

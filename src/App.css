@@ -82,7 +82,7 @@ section.search input[type="text"] {
 
 div.results.flex.results {
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 }
 
 section div.flex {
@@ -144,8 +144,6 @@ div.flex {
   align-items: center;
 }
 
-
-
 .card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -155,7 +153,7 @@ div.flex {
 .overview {
   text-align: left;
   color: #4d4d4d;
-    font-size: 14px;
+  font-size: 14px;
 }
 div.item.card div.wrapper a {
   width: 100%;
@@ -182,10 +180,10 @@ a {
   width: 185px;
 }
 
-.g-tag{
+.g-tag {
   padding: 2px 5px;
   color: #fff;
-  background-color:#21d07a;
+  background-color: #21d07a;
   display: inline-block;
   border-radius: 3px;
   margin: 3px;
@@ -202,47 +200,45 @@ a {
   justify-content: center;
   display: inline-block;
   padding-top: 10px;
-    height: 35px;
-    align-items: center;
-    font-size: 14px;
+  height: 35px;
+  align-items: center;
+  font-size: 14px;
 }
-
-
 
 @media only screen and (max-width: 650px) {
   .card {
     width: 95%;
   }
 
-  .desc{
+  .desc {
     display: none;
   }
 
-  .image_content{
+  .image_content {
     width: 100% !important;
   }
 
   div.results.flex div.item {
     margin: 10px;
-}
-div.item.poster.card div.info {
-  height: auto;
-}
-.tag-wrapper{
-  bottom: 0px !important;
-}
-.overview{
-  width: 100% !important;
-}
-.lang-tile{
-  width: 100%;
-  padding-top: 5px;
-  display: block;
-}
-div.item.poster.card div.info {
-  width: 100% !important;
-}
-
+  }
+  div.item.poster.card div.info {
+    height: auto;
+  }
+  .tag-wrapper {
+    position: relative !important;
+    bottom: 0 !important;
+  }
+  .overview {
+    width: 100% !important;
+  }
+  .lang-tile {
+    width: 100%;
+    padding-top: 5px;
+    display: block;
+  }
+  div.item.poster.card div.info {
+    width: 100% !important;
+  }
 }
 
 @media only screen and (min-width: 650px) {
@@ -251,7 +247,7 @@ div.item.poster.card div.info {
     flex-direction: row;
   }
 
-  .lang-tile{
+  .lang-tile {
     width: 100%;
     padding-top: 10px;
     display: block;
@@ -267,4 +263,19 @@ div.item.poster.card div.info {
   position: fixed;
   bottom: 0;
   font-weight: bold;
+}
+
+.pagination {
+  width: 100%;
+  padding-top: 10px;
+  position: fixed;
+  bottom: 0;
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+.prev-page,
+.next-page {
+  margin: 3px;
+  cursor: pointer;
 }
