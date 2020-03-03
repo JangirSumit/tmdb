@@ -13,10 +13,15 @@ class App extends Component {
     };
   }
 
-  loadData() {
+  async loadData() {
     let url =
       "https://api.themoviedb.org/3/search/movie?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US&query=" +
       document.getElementById("search_text").value;
+
+    let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US");
+    let languages = fetch("https://api.themoviedb.org/3/configuration/languages?api_key=c98d68ce201dd1845ce26a43f4f9d9d7");
+    let g = await (await genres).json();
+    let langs = await (await languages).json()
 
     var self = this;
     fetch(url)
@@ -25,7 +30,9 @@ class App extends Component {
       })
       .then(d => {
         self.setState({
-          data: d.results
+          data: d.results,
+          g:g,
+          langs:langs
         });
       })
       .catch(error => {
@@ -74,7 +81,7 @@ class App extends Component {
           <div className="results flex">
             {this.state.data &&
               this.state.data.length &&
-              this.state.data.map(d => <ItemTile key={d.id} data={d} />)}
+              this.state.data.map(d => <ItemTile key={d.id} data={d} g={this.state.g} langs={this.state.langs}/>)}
           </div>
         </section>
       </div>

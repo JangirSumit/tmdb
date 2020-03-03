@@ -13,6 +13,7 @@ class ItemTile extends Component {
                 this.props.data.poster_path &&
                 `https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.props.data.poster_path}`
               }
+              alt=""
             />
           ) : (
             <div className="no-image">No Image</div>
@@ -20,6 +21,7 @@ class ItemTile extends Component {
         </div>
         <div className="info">
           <div className="wrapper">
+          <div className="flex p-tag">{parseInt(this.props.data.vote_average)*10}<small>%</small></div>
             <div className="flex">
               <a
                 id={`movie_${this.props.data.id}`}
@@ -30,7 +32,7 @@ class ItemTile extends Component {
               >
                 {this.props.data.title}
               </a>
-              <span>{this.props.data.release_date}</span>
+              <span><small>{this.props.data.release_date}</small></span>
             </div>
           </div>
 
@@ -38,7 +40,12 @@ class ItemTile extends Component {
             {this.props.data.overview.length > 200
               ? this.props.data.overview.substring(0, 200) + "..."
               : this.props.data.overview}
+              <br/>
+              <span><b>Original Language</b>: <small>{this.props.data.original_language && this.props.langs.find(l=>l.iso_639_1 === this.props.data.original_language).english_name}</small></span>
           </p>
+          <div style={{textAlign:"left"}}>
+            {this.props.data.genre_ids.length ?  this.props.data.genre_ids.map(gid=><span key={gid} className="g-tag">{this.props.g.genres.find(a=>a.id===gid).name}</span>):""}
+          </div>
         </div>
       </div>
     );

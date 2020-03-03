@@ -161,6 +161,8 @@ div.flex {
 }
 .overview {
   text-align: left;
+  color: #4d4d4d;
+    font-size: 14px;
 }
 div.item.card div.wrapper a {
   width: 100%;
@@ -185,4 +187,26 @@ a {
 }
 .no-image {
   padding-top: 130px;
+}
+
+.g-tag{
+  padding: 2px 5px;
+  color: #fff;
+  background-color:#21d07a;
+  display: inline-block;
+  border-radius: 3px;
+  margin: 3px;
+  font-size: 13px;
+}
+
+.p-tag {
+  /* margin: 10px 0 10px 0px; */
+  background: #282c34;
+  border-radius: 25px;
+  /* padding: 12px; */
+  color: #fff;
+  margin-right: 10px;
+  width: 50px;
+  text-align: center;
+  justify-content: center;
 }
