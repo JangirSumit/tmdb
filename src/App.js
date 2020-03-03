@@ -20,23 +20,14 @@ class App extends Component {
 
     let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US");
     let languages = fetch("https://api.themoviedb.org/3/configuration/languages?api_key=c98d68ce201dd1845ce26a43f4f9d9d7");
+    let data = fetch(url);
     let g = await (await genres).json();
     let langs = await (await languages).json()
-
-    var self = this;
-    fetch(url)
-      .then(response => {
-        return response.json();
-      })
-      .then(d => {
-        self.setState({
-          data: d.results,
-          g:g,
-          langs:langs
-        });
-      })
-      .catch(error => {
-        console.log("Error : " + error);
+    let d = await (await data).json();
+      this.setState({
+        data: d.results,
+        g:g,
+        langs:langs
       });
   }
 

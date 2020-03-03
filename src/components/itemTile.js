@@ -37,10 +37,10 @@ class ItemTile extends Component {
           </div>
 
           <p className="overview">
-            {this.props.data.overview.length > 200
-              ? this.props.data.overview.substring(0, 200) + "..."
+            {this.props.data.overview.length > 400
+              ? this.props.data.overview.substring(0, 400) + "..."
               : this.props.data.overview}
-              <br/>
+              <br/><br/>
               <span><b>Original Language</b>: <small>{this.props.data.original_language && this.props.langs.find(l=>l.iso_639_1 === this.props.data.original_language).english_name}</small></span>
           </p>
           <div style={{textAlign:"left"}}>
