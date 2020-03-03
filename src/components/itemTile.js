@@ -16,13 +16,13 @@ class ItemTile extends Component {
               alt=""
             />
           ) : (
-            <div className="no-image">No Image</div>
+            <div className="no-image"></div>
           )}
         </div>
         <div className="info">
           <div className="wrapper">
-          <div className="flex p-tag">{parseInt(this.props.data.vote_average)*10}<small>%</small></div>
-            <div className="flex">
+          <div className="p-tag">{parseInt(this.props.data.vote_average)*10}<small>%</small></div>
+            <div style={{display:"inline-block"}}>
               <a
                 id={`movie_${this.props.data.id}`}
                 className="title result"
@@ -37,13 +37,13 @@ class ItemTile extends Component {
           </div>
 
           <p className="overview">
-            {this.props.data.overview.length > 400
+            <span className="desc">{this.props.data.overview.length > 400
               ? this.props.data.overview.substring(0, 400) + "..."
-              : this.props.data.overview}
-              <br/><br/>
-              <span><b>Original Language</b>: <small>{this.props.data.original_language && this.props.langs.find(l=>l.iso_639_1 === this.props.data.original_language).english_name}</small></span>
+              : this.props.data.overview}</span>
+              
+              <span className="lang-tile"><b>Original Language</b>: <small>{this.props.data.original_language && this.props.langs.find(l=>l.iso_639_1 === this.props.data.original_language).english_name}</small></span>
           </p>
-          <div style={{textAlign:"left",position:"absolute",bottom:"15px"}}>
+          <div className="tag-wrapper" style={{textAlign:"left",position:"absolute",bottom:"15px"}}>
             {this.props.data.genre_ids.length ?  this.props.data.genre_ids.map(gid=><span key={gid} className="g-tag">{this.props.g.genres.find(a=>a.id===gid).name}</span>):""}
           </div>
         </div>

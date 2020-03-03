@@ -148,10 +148,7 @@ div.flex {
   align-items: center;
 }
 
-.item.poster.card {
-  display: inline-flex;
-  flex-direction: row;
-}
+
 
 .card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -201,13 +198,66 @@ a {
 }
 
 .p-tag {
-  /* margin: 10px 0 10px 0px; */
   background: #282c34;
   border-radius: 25px;
-  /* padding: 12px; */
   color: #fff;
   margin-right: 10px;
-  width: 50px;
+  width: 45px;
   text-align: center;
   justify-content: center;
+  display: inline-block;
+  padding-top: 10px;
+    height: 35px;
+    align-items: center;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 95%;
+  }
+
+  .desc{
+    display: none;
+  }
+
+  .image_content{
+    width: 100% !important;
+  }
+
+  div.results.flex div.item {
+    margin: 10px;
+}
+div.item.poster.card div.info {
+  height: auto;
+}
+.tag-wrapper{
+  bottom: 0px !important;
+}
+.overview{
+  width: 100% !important;
+}
+.lang-tile{
+  width: 100%;
+  padding-top: 5px;
+  display: block;
+}
+div.item.poster.card div.info {
+  width: 100% !important;
+}
+
+}
+
+@media only screen and (min-width: 600px) {
+  .item.poster.card {
+    display: inline-flex;
+    flex-direction: row;
+  }
+
+  .lang-tile{
+    width: 100%;
+    padding-top: 15px;
+    display: block;
+  }
 }
