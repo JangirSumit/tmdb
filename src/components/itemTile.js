@@ -43,7 +43,7 @@ class ItemTile extends Component {
               <br/><br/>
               <span><b>Original Language</b>: <small>{this.props.data.original_language && this.props.langs.find(l=>l.iso_639_1 === this.props.data.original_language).english_name}</small></span>
           </p>
-          <div style={{textAlign:"left"}}>
+          <div style={{textAlign:"left",position:"absolute",bottom:"15px"}}>
             {this.props.data.genre_ids.length ?  this.props.data.genre_ids.map(gid=><span key={gid} className="g-tag">{this.props.g.genres.find(a=>a.id===gid).name}</span>):""}
           </div>
         </div>

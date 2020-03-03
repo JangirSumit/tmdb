@@ -9,7 +9,9 @@ class App extends Component {
     super();
 
     this.state = {
-      data: {}
+      data: {},
+      g:[],
+      langs:[]
     };
   }
 
@@ -17,23 +19,29 @@ class App extends Component {
     let url =
       "https://api.themoviedb.org/3/search/movie?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US&query=" +
       document.getElementById("search_text").value;
-
-    let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US");
-    let languages = fetch("https://api.themoviedb.org/3/configuration/languages?api_key=c98d68ce201dd1845ce26a43f4f9d9d7");
     let data = fetch(url);
-    let g = await (await genres).json();
-    let langs = await (await languages).json()
     let d = await (await data).json();
       this.setState({
-        data: d.results,
-        g:g,
-        langs:langs
+        data: d
       });
   }
 
   onKeyUp = debounce(event => {
     this.loadData();
   }, 400);
+
+  async componentDidMount(){
+    let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US");
+    let languages = fetch("https://api.themoviedb.org/3/configuration/languages?api_key=c98d68ce201dd1845ce26a43f4f9d9d7");
+
+    let g = await (await genres).json();
+    let langs = await (await languages).json()
+
+    this.setState({
+      g:g,
+      langs:langs
+    });
+  }
 
   render() {
     return (
@@ -69,10 +77,11 @@ class App extends Component {
           </section>
         </div>
         <section className="content">
+          <div style={{paddingTop:"10px",fontSize:"18px",fontWeight:"bold"}}>{this.state.data && this.state.data.results && "Total Results: " + this.state.data.total_results}</div>
           <div className="results flex">
             {this.state.data &&
-              this.state.data.length &&
-              this.state.data.map(d => <ItemTile key={d.id} data={d} g={this.state.g} langs={this.state.langs}/>)}
+              this.state.data.results && this.state.data.results.length &&
+              this.state.data.results.map(d => <ItemTile key={d.id} data={d} g={this.state.g} langs={this.state.langs}/>)}
           </div>
         </section>
       </div>
