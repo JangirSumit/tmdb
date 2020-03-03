@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import debounce from "./common/debounce";
-import logo from "./logo.svg";
 import ItemTile from "./components/itemTile";
 import "./App.css";
 
@@ -66,7 +65,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img
-            src={logo}
+            src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg"
             className="App-logo"
             alt="logo"
             style={{ paddingLeft: "10px" }}
