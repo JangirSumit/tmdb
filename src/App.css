@@ -77,12 +77,12 @@ section.search input[type="text"] {
 
 .content {
   width: 100%;
-  float: left;
   box-sizing: border-box;
 }
 
 div.results.flex.results {
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 section div.flex {
@@ -253,7 +253,18 @@ div.item.poster.card div.info {
 
   .lang-tile{
     width: 100%;
-    padding-top: 15px;
+    padding-top: 10px;
     display: block;
   }
+}
+
+.footer {
+  background: linear-gradient(to top right, #2455a9, #00d573);
+  color: #fff;
+  height: 30px;
+  width: 100%;
+  padding-top: 10px;
+  position: fixed;
+  bottom: 0;
+  font-weight: bold;
 }

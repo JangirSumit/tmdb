@@ -88,6 +88,9 @@ class App extends Component {
               this.state.data.results.map(d => <ItemTile key={d.id} data={d} g={this.state.g} langs={this.state.langs}/>)}
           </div>
         </section>
+        <section className="footer">
+                Assumption : Showing only Page 1
+              </section>      
       </div>
     );
   }
