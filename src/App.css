@@ -116,7 +116,7 @@ div.item.card div.wrapper {
   display: flex;
 }
 div.results.flex div.item {
-  margin: 30px;
+  margin: 10px;
   color: #000;
 }
 div.consensus.tight {
