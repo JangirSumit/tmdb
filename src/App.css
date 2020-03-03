@@ -106,10 +106,6 @@ div.item.backdrop div.image_content {
   line-height: 0;
 }
 div.item.poster.card div.info {
-  width: 555px;
-}
-
-div.item.poster.card div.info {
   height: 278px;
   position: relative;
   box-sizing: border-box;
@@ -166,7 +162,6 @@ div.item.card div.wrapper a {
   display: block;
   font-weight: 600;
   font-size: 1.1em;
-  line-height: 2em;
   text-align: left;
 }
 section.search_results h2,
@@ -209,11 +204,12 @@ a {
   padding-top: 10px;
     height: 35px;
     align-items: center;
+    font-size: 14px;
 }
 
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   .card {
     width: 95%;
   }
@@ -249,7 +245,7 @@ div.item.poster.card div.info {
 
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 650px) {
   .item.poster.card {
     display: inline-flex;
     flex-direction: row;

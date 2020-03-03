@@ -22,7 +22,7 @@ class ItemTile extends Component {
         <div className="info">
           <div className="wrapper">
           <div className="p-tag">{parseInt(this.props.data.vote_average)*10}<small>%</small></div>
-            <div style={{display:"inline-block"}}>
+            <div style={{display:"inline-block", textAlign:"left"}}>
               <a
                 id={`movie_${this.props.data.id}`}
                 className="title result"
@@ -42,6 +42,7 @@ class ItemTile extends Component {
               : this.props.data.overview}</span>
               
               <span className="lang-tile"><b>Original Language</b>: <small>{this.props.data.original_language && this.props.langs.find(l=>l.iso_639_1 === this.props.data.original_language).english_name}</small></span>
+              <span className="lang-tile"><b>Popularity</b>: <small>{this.props.data.popularity}</small></span>
           </p>
           <div className="tag-wrapper" style={{textAlign:"left",position:"absolute",bottom:"15px"}}>
             {this.props.data.genre_ids.length ?  this.props.data.genre_ids.map(gid=><span key={gid} className="g-tag">{this.props.g.genres.find(a=>a.id===gid).name}</span>):""}

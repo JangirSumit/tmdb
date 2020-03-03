@@ -77,7 +77,11 @@ class App extends Component {
           </section>
         </div>
         <section className="content">
-          <div style={{paddingTop:"10px",fontSize:"18px",fontWeight:"bold"}}>{this.state.data && this.state.data.results && "Total Results: " + this.state.data.total_results}</div>
+          <div style={{paddingTop:"10px"}}>
+            <span style={{paddingTop:"10px",fontSize:"18px",fontWeight:"bold"}}>{this.state.data && this.state.data.results && "Total Results: " + this.state.data.total_results+ " | "} </span>
+            <small>{this.state.data.page ? "Total Pages "+this.state.data.total_pages :""}</small>
+            <small>{this.state.data.page ? " | Page "+this.state.data.page :""}</small>
+            </div>
           <div className="results flex">
             {this.state.data &&
               this.state.data.results && this.state.data.results.length &&
