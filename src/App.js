@@ -51,7 +51,6 @@ class App extends Component {
 
   async onPrevClick() {
     let currentPage = this.state.page;
-    let total_pages = this.state.total_pages;
     if (currentPage > 1) await this.loadData(--currentPage);
   }
 
@@ -136,11 +135,13 @@ class App extends Component {
             <img
               className="prev-page"
               onClick={event => this.onPrevClick(event)}
+              alt=""
               src="https://img.icons8.com/flat_round/64/000000/circled-left-2--v1.png"
             />
             <img
               className="next-page"
               onClick={event => this.onNextClick(event)}
+              alt=""
               src="https://img.icons8.com/flat_round/64/000000/circled-right-2--v1.png"
             />
           </section>
