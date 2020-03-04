@@ -103,8 +103,8 @@ class App extends Component {
               }}
             >
               {this.state.data &&
-                this.state.data.results &&
-                "Total Results: " + this.state.data.total_results + " | "}{" "}
+                this.state.data.results ?
+                "Total Results: " + this.state.data.total_results + " | ":""}{" "}
             </span>
             <small>
               {this.state.data.page
@@ -118,7 +118,7 @@ class App extends Component {
           <div className="results flex">
             {this.state.data &&
               this.state.data.results &&
-              this.state.data.results.length &&
+              this.state.data.results.length ?
               this.state.data.results.map(d => (
                 <ItemTile
                   key={d.id}
@@ -126,7 +126,7 @@ class App extends Component {
                   g={this.state.g}
                   langs={this.state.langs}
                 />
-              ))}
+              )):""}
           </div>
         </section>
         {this.state.data && this.state.data.total_pages > 1 ? (
