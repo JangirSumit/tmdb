@@ -278,4 +278,5 @@ a {
 .next-page {
   margin: 3px;
   cursor: pointer;
+  width: 32px;
 }
