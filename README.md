@@ -1,12 +1,12 @@
 [Demo](https://jangirsumit.github.io/tmdb/)
 
-![Image1](https://github.com/JangirSumit/tmdb/blob/master/src/desktop.png) 
+![Image1](https://github.com/JangirSumit/tmdb/blob/master/public/content/desktop.png) 
 
 
-![Image2](https://github.com/JangirSumit/tmdb/blob/master/src/ipad.png) 
+![Image2](https://github.com/JangirSumit/tmdb/blob/master/public/content/ipad.png) 
 
 
-![Image3](https://github.com/JangirSumit/tmdb/blob/master/src/mobile.png) 
+![Image3](https://github.com/JangirSumit/tmdb/blob/master/public/content/mobile.png) 
 
 
 

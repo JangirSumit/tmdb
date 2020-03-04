@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100px;
+  min-height: 70px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -82,7 +82,6 @@ section.search input[type="text"] {
 
 div.results.flex.results {
   justify-content: center;
-  margin-bottom: 80px;
 }
 
 section div.flex {
@@ -239,7 +238,17 @@ a {
   div.item.poster.card div.info {
     width: 100% !important;
   }
+
+  .App-header {
+    min-height: 70px !important;
+  }
+  .burger-menu{
+    padding-left: 10px;
+    padding-right: 10px;
+    display: block;
+  }
 }
+
 
 @media only screen and (min-width: 650px) {
   .item.poster.card {
@@ -251,6 +260,9 @@ a {
     width: 100%;
     padding-top: 10px;
     display: block;
+  }
+  .burger-menu{
+    display: none;
   }
 }
 
@@ -279,4 +291,9 @@ a {
   margin: 3px;
   cursor: pointer;
   width: 32px;
+}
+
+.burger-menu{
+  padding-left: 10px;
+  padding-right: 10px;
 }

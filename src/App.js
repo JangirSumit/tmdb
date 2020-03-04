@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import debounce from "./common/debounce";
 import ItemTile from "./components/itemTile";
+import menuIcon from "./content/burger.png";
 import "./App.css";
 
 class App extends Component {
@@ -79,6 +80,7 @@ class App extends Component {
           >
             Community built movie and TV database
           </div>
+          <img src={menuIcon} alt="menu" className="burger-menu"/>
         </header>
         <div className="search_bar">
           <section className="search">
@@ -94,7 +96,29 @@ class App extends Component {
           </section>
         </div>
         <section className="content">
-          <div style={{ paddingTop: "10px" }}>
+          <div style={{paddingTop:"10px"}}><span
+              style={{
+                paddingTop: "10px",
+                fontSize: "18px",
+                fontWeight: "bold"
+              }}
+            >{this.state.data &&
+              this.state.data.results &&
+              this.state.data.results.length ? "Search Results":""}</span></div>
+          <div className="results flex">
+            {this.state.data &&
+              this.state.data.results &&
+              this.state.data.results.length ?
+              this.state.data.results.map(d => (
+                <ItemTile
+                  key={d.id}
+                  data={d}
+                  g={this.state.g}
+                  langs={this.state.langs}
+                />
+              )):""}
+          </div>
+          <div style={{ paddingTop: "10px", marginBottom:"60px" }}>
             <span
               style={{
                 paddingTop: "10px",
@@ -114,19 +138,6 @@ class App extends Component {
             <small>
               {this.state.data.page ? " | Page " + this.state.data.page : ""}
             </small>
-          </div>
-          <div className="results flex">
-            {this.state.data &&
-              this.state.data.results &&
-              this.state.data.results.length ?
-              this.state.data.results.map(d => (
-                <ItemTile
-                  key={d.id}
-                  data={d}
-                  g={this.state.g}
-                  langs={this.state.langs}
-                />
-              )):""}
           </div>
         </section>
         {this.state.data && this.state.data.total_pages > 1 ? (
