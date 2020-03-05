@@ -51,6 +51,10 @@ class App extends Component {
     });
   }
 
+  async onMobileMenuItemClick(data){
+    console.log(data);
+  }
+
   async onPrevClick() {
     let currentPage = this.state.page;
     if (currentPage > 1) await this.loadData(--currentPage);
@@ -159,7 +163,7 @@ class App extends Component {
         ) : (
           ""
         )}
-        {this.state.showMobileMenu ?<MobileMenu/>:""}
+        {this.state.showMobileMenu ?<MobileMenu onMobileMenuItemClick={event=>this.onMobileMenuItemClick(event)}/>:""}
       </div>
     );
   }
