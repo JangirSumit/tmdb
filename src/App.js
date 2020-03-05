@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import debounce from "./common/debounce";
 import ItemTile from "./components/itemTile";
 import menuIcon from "./content/burger.png";
+import MobileMenu from "./components/mobileMenu";
 import "./App.css";
 
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
     this.state = {
       data: {},
       g: [],
-      langs: []
+      langs: [],
+      showMobileMenu:false
     };
   }
 
@@ -61,6 +63,10 @@ class App extends Component {
       await this.loadData(++currentPage);
   }
 
+  async onMobileMenuClick(){
+    this.setState({showMobileMenu:!this.state.showMobileMenu});
+  }
+
   render() {
     return (
       <div className="App">
@@ -69,18 +75,13 @@ class App extends Component {
             src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg"
             className="App-logo"
             alt="logo"
-            style={{ paddingLeft: "10px" }}
           />
           <div
-            style={{
-              paddingLeft: "10px",
-              textAlign: "left",
-              paddingRight: "10px"
-            }}
+            className="title"
           >
             Community built movie and TV database
           </div>
-          <img src={menuIcon} alt="menu" className="burger-menu"/>
+          <img src={menuIcon} alt="menu" className="burger-menu" onClick={event=>this.onMobileMenuClick(event)}/>
         </header>
         <div className="search_bar">
           <section className="search">
@@ -158,6 +159,7 @@ class App extends Component {
         ) : (
           ""
         )}
+        {this.state.showMobileMenu ?<MobileMenu/>:""}
       </div>
     );
   }

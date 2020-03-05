@@ -5,6 +5,9 @@
 .App-logo {
   height: 50px;
   pointer-events: none;
+  padding-left: 10px;
+    position: absolute;
+    left: 0;
 }
 
 .App-header {
@@ -245,7 +248,17 @@ a {
   .burger-menu{
     padding-left: 10px;
     padding-right: 10px;
-    display: block;
+    position: absolute;
+    right: 0;
+    width: 32px;
+  }
+
+  .show-on-mobile{
+    display: block  !important;
+  }
+
+  .show-on-wide{
+    display: none !important;
   }
 }
 
@@ -263,6 +276,13 @@ a {
   }
   .burger-menu{
     display: none;
+  }
+  .show-on-wide{
+    display: block !important;
+  }
+
+  .show-on-mobile{
+    display: none  !important;
   }
 }
 
@@ -296,4 +316,34 @@ a {
 .burger-menu{
   padding-left: 10px;
   padding-right: 10px;
+}
+
+header .title {
+  padding-left: 10px;
+  text-align: left;
+  padding-right: 10px;
+  width: 60%;
+  left: 70px;
+  position: absolute;
+}
+
+.mobile-menu{
+  width: 80%;
+  color: #fff;
+  height: 85%;
+  position: absolute;
+  right: 0;
+  z-index: 10000000000;
+  background: #282c34;
+  top: 70px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d3d3d3;
+}
+
+.mobile-menu ul{
+  text-decoration: none;
+    list-style: none;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    text-align: left;
 }

@@ -7,15 +7,23 @@ function ItemTile(props) {
     <div className="item poster card">
       <div className="image_content">
         {props.data.poster_path ? (
-          <img
-            className="poster fade lazyautosizes lazyloaded"
+          <><img
+            className="show-on-wide"
             src={
               props.data.poster_path &&
               `https://image.tmdb.org/t/p/w185_and_h278_bestv2${props.data.poster_path}`
             }
-            alt=""
+            alt="" style={{width:"183px", height:"278px"}}
           />
-        ) : (
+
+          <img
+            className="show-on-mobile"
+            src={
+              props.data.poster_path &&
+              `https://image.tmdb.org/t/p/w500_and_h282_face${props.data.poster_path}`
+            }
+            alt="" style={{width:"100%", height:"278px"}}
+          /></>) : (
           <div className="no-image"></div>
         )}
       </div>
