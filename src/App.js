@@ -52,7 +52,7 @@ class App extends Component {
   }
 
   async onMobileMenuItemClick(data){
-    console.log(data);
+    await this.loadMenuData(1,data.api);
   }
 
   async onPrevClick() {
@@ -65,6 +65,17 @@ class App extends Component {
     let total_pages = this.state.total_pages;
     if (currentPage > 0 && currentPage < total_pages)
       await this.loadData(++currentPage);
+  }
+
+  async loadMenuData(page=1,api) {
+    let url = `https://api.themoviedb.org/3${api}&api_key=c98d68ce201dd1845ce26a43f4f9d9d7&page=${page}&language=en-US`;
+    let data = fetch(url);
+    let d = await (await data).json();
+    this.setState({
+      data: d,
+      page: page,
+      total_pages: d.total_pages
+    });
   }
 
   async onMobileMenuClick(){
