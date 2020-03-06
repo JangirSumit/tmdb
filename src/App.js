@@ -14,7 +14,8 @@ class App extends Component {
       g: [],
       langs: [],
       showMobileMenu: false,
-      resultText: ""
+      resultText: "",
+      selectedMenu: ""
     };
   }
 
@@ -28,7 +29,8 @@ class App extends Component {
       data: d,
       page: page,
       total_pages: d.total_pages,
-      resultText: "Search Results"
+      resultText: "Search Results",
+      selectedMenu: ""
     });
   }
 
@@ -58,19 +60,34 @@ class App extends Component {
   }
 
   async onMobileMenuItemClick(data) {
+    this.setState({ selectedMenu: data });
     await this.loadMenuData(1, data.api, data.label);
   }
 
   async onPrevClick() {
     let currentPage = this.state.page;
-    if (currentPage > 1) await this.loadData(--currentPage);
+    if (currentPage > 1) {
+      if (!this.state.selectedMenu) await this.loadData(--currentPage);
+      else
+        this.loadMenuData(
+          --currentPage,
+          this.state.selectedMenu.api,
+          this.state.selectedMenu.label
+        );
+    }
   }
 
   async onNextClick() {
     let currentPage = this.state.page;
     let total_pages = this.state.total_pages;
     if (currentPage > 0 && currentPage < total_pages)
-      await this.loadData(++currentPage);
+      if (!this.state.selectedMenu) await this.loadData(++currentPage);
+      else
+        this.loadMenuData(
+          ++currentPage,
+          this.state.selectedMenu.api,
+          this.state.selectedMenu.label
+        );
   }
 
   async loadMenuData(page = 1, api, resultText) {
