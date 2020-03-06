@@ -13,7 +13,8 @@ class App extends Component {
       data: {},
       g: [],
       langs: [],
-      showMobileMenu:false
+      showMobileMenu: false,
+      resultText: ""
     };
   }
 
@@ -26,7 +27,8 @@ class App extends Component {
     this.setState({
       data: d,
       page: page,
-      total_pages: d.total_pages
+      total_pages: d.total_pages,
+      resultText: "Search Results"
     });
   }
 
@@ -35,24 +37,28 @@ class App extends Component {
   }, 400);
 
   async componentDidMount() {
-    let genres = fetch(
+    let genres_r = fetch(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US"
     );
-    let languages = fetch(
+    let languages_r = fetch(
       "https://api.themoviedb.org/3/configuration/languages?api_key=c98d68ce201dd1845ce26a43f4f9d9d7"
     );
 
-    let g = await (await genres).json();
-    let langs = await (await languages).json();
+    let clientDetails_r = fetch("http://ip-api.com/json");
+
+    let g = await (await genres_r).json();
+    let langs = await (await languages_r).json();
+    let clientDetails = await (await clientDetails_r).json();
 
     this.setState({
       g: g,
-      langs: langs
+      langs: langs,
+      clientDetails: clientDetails
     });
   }
 
-  async onMobileMenuItemClick(data){
-    await this.loadMenuData(1,data.api);
+  async onMobileMenuItemClick(data) {
+    await this.loadMenuData(1, data.api, data.label);
   }
 
   async onPrevClick() {
@@ -67,19 +73,21 @@ class App extends Component {
       await this.loadData(++currentPage);
   }
 
-  async loadMenuData(page=1,api) {
+  async loadMenuData(page = 1, api, resultText) {
     let url = `https://api.themoviedb.org/3${api}&api_key=c98d68ce201dd1845ce26a43f4f9d9d7&page=${page}&language=en-US`;
     let data = fetch(url);
     let d = await (await data).json();
     this.setState({
       data: d,
       page: page,
-      total_pages: d.total_pages
+      total_pages: d.total_pages,
+      resultText: resultText,
+      showMobileMenu: false
     });
   }
 
-  async onMobileMenuClick(){
-    this.setState({showMobileMenu:!this.state.showMobileMenu});
+  async onMobileMenuClick() {
+    this.setState({ showMobileMenu: !this.state.showMobileMenu });
   }
 
   render() {
@@ -91,12 +99,13 @@ class App extends Component {
             className="App-logo"
             alt="logo"
           />
-          <div
-            className="title"
-          >
-            Community built movie and TV database
-          </div>
-          <img src={menuIcon} alt="menu" className="burger-menu" onClick={event=>this.onMobileMenuClick(event)}/>
+          <div className="title">Community built movie and TV database</div>
+          <img
+            src={menuIcon}
+            alt="menu"
+            className="burger-menu"
+            onClick={event => this.onMobileMenuClick(event)}
+          />
         </header>
         <div className="search_bar">
           <section className="search">
@@ -112,29 +121,7 @@ class App extends Component {
           </section>
         </div>
         <section className="content">
-          <div style={{paddingTop:"10px"}}><span
-              style={{
-                paddingTop: "10px",
-                fontSize: "18px",
-                fontWeight: "bold"
-              }}
-            >{this.state.data &&
-              this.state.data.results &&
-              this.state.data.results.length ? "Search Results":""}</span></div>
-          <div className="results flex">
-            {this.state.data &&
-              this.state.data.results &&
-              this.state.data.results.length ?
-              this.state.data.results.map(d => (
-                <ItemTile
-                  key={d.id}
-                  data={d}
-                  g={this.state.g}
-                  langs={this.state.langs}
-                />
-              )):""}
-          </div>
-          <div style={{ paddingTop: "10px", marginBottom:"60px" }}>
+          <div style={{ paddingTop: "10px" }}>
             <span
               style={{
                 paddingTop: "10px",
@@ -143,8 +130,37 @@ class App extends Component {
               }}
             >
               {this.state.data &&
-                this.state.data.results ?
-                "Total Results: " + this.state.data.total_results + " | ":""}{" "}
+              this.state.data.results &&
+              this.state.data.results.length
+                ? this.state.resultText
+                : ""}
+            </span>
+          </div>
+          <div className="results flex">
+            {this.state.data &&
+            this.state.data.results &&
+            this.state.data.results.length
+              ? this.state.data.results.map(d => (
+                  <ItemTile
+                    key={d.id}
+                    data={d}
+                    g={this.state.g}
+                    langs={this.state.langs}
+                  />
+                ))
+              : ""}
+          </div>
+          <div style={{ paddingTop: "10px", marginBottom: "60px" }}>
+            <span
+              style={{
+                paddingTop: "10px",
+                fontSize: "18px",
+                fontWeight: "bold"
+              }}
+            >
+              {this.state.data && this.state.data.results
+                ? "Total Results: " + this.state.data.total_results + " | "
+                : ""}{" "}
             </span>
             <small>
               {this.state.data.page
@@ -174,7 +190,13 @@ class App extends Component {
         ) : (
           ""
         )}
-        {this.state.showMobileMenu ?<MobileMenu onMobileMenuItemClick={event=>this.onMobileMenuItemClick(event)}/>:""}
+        {this.state.showMobileMenu ? (
+          <MobileMenu
+            onMobileMenuItemClick={event => this.onMobileMenuItemClick(event)}
+          />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

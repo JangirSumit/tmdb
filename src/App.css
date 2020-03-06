@@ -6,8 +6,8 @@
   height: 50px;
   pointer-events: none;
   padding-left: 10px;
-    position: absolute;
-    left: 0;
+  position: absolute;
+  left: 0;
 }
 
 .App-header {
@@ -245,7 +245,7 @@ a {
   .App-header {
     min-height: 70px !important;
   }
-  .burger-menu{
+  .burger-menu {
     padding-left: 10px;
     padding-right: 10px;
     position: absolute;
@@ -253,15 +253,14 @@ a {
     width: 32px;
   }
 
-  .show-on-mobile{
-    display: block  !important;
+  .show-on-mobile {
+    display: block !important;
   }
 
-  .show-on-wide{
+  .show-on-wide {
     display: none !important;
   }
 }
-
 
 @media only screen and (min-width: 650px) {
   .item.poster.card {
@@ -274,15 +273,15 @@ a {
     padding-top: 10px;
     display: block;
   }
-  .burger-menu{
+  .burger-menu {
     display: none;
   }
-  .show-on-wide{
+  .show-on-wide {
     display: block !important;
   }
 
-  .show-on-mobile{
-    display: none  !important;
+  .show-on-mobile {
+    display: none !important;
   }
 }
 
@@ -313,7 +312,7 @@ a {
   width: 32px;
 }
 
-.burger-menu{
+.burger-menu {
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -327,7 +326,7 @@ header .title {
   position: absolute;
 }
 
-.mobile-menu{
+.mobile-menu {
   width: 80%;
   color: #fff;
   height: 85%;
@@ -340,15 +339,18 @@ header .title {
   border: 1px solid #d3d3d3;
 }
 
-.mobile-menu ul{
+.mobile-menu ul {
   text-decoration: none;
-    list-style: none;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    text-align: left;
+  list-style: none;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  text-align: left;
 }
 
-.mobile-menu ul li{
-    padding-bottom: 10px;
-    text-align: left;
+.mobile-menu ul li {
+  margin-bottom: 10px;
+  text-align: left;
+  border-bottom: 1px solid #d3d3d3;
+  margin-right: 20px;
+  padding-bottom: 5px;
 }
