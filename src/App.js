@@ -46,16 +46,16 @@ class App extends Component {
       "https://api.themoviedb.org/3/configuration/languages?api_key=c98d68ce201dd1845ce26a43f4f9d9d7"
     );
 
-    let clientDetails_r = fetch("http://ip-api.com/json");
+    //let clientDetails_r = fetch("http://ip-api.com/json");
 
     let g = await (await genres_r).json();
     let langs = await (await languages_r).json();
-    let clientDetails = await (await clientDetails_r).json();
+    //let clientDetails = await (await clientDetails_r).json();
 
     this.setState({
       g: g,
-      langs: langs,
-      clientDetails: clientDetails
+      langs: langs
+      //clientDetails: clientDetails
     });
   }
 
