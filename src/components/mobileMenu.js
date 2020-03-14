@@ -10,6 +10,10 @@ class MobileMenu extends Component {
     });
   }
 
+  async onSettingsClick() {
+    this.props.onSettingsClick();
+  }
+
   render() {
     let menuDetails = [
       {
@@ -48,7 +52,10 @@ class MobileMenu extends Component {
             </li>
           ))}
         </ul>
-        <div className="settings-wrapper">
+        <div
+          className="settings-wrapper"
+          onClick={() => this.onSettingsClick()}
+        >
           <img src={settingsIcon} />
           <span>Settings</span>
         </div>
