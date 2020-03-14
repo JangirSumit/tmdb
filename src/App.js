@@ -22,7 +22,8 @@ class App extends Component {
   }
 
   async loadData(page) {
-    let url = `https://api.themoviedb.org/3/search/movie?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&page=${page}&language=en-US&query=${
+    let lang = window.localStorage.getItem("lang") || "en-US";
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&page=${page}&language=${lang}&query=${
       document.getElementById("search_text").value
     }`;
     let data = fetch(url);
@@ -42,7 +43,6 @@ class App extends Component {
 
   async componentDidMount() {
     window.addEventListener("scroll", this.handleScroll.bind(this));
-
     let genres_r = fetch(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US"
     );
@@ -96,7 +96,8 @@ class App extends Component {
   }
 
   async loadMenuData(page = 1, api, resultText) {
-    let url = `https://api.themoviedb.org/3${api}&api_key=c98d68ce201dd1845ce26a43f4f9d9d7&page=${page}&language=en-US`;
+    let lang = window.localStorage.getItem("lang") || "en-US";
+    let url = `https://api.themoviedb.org/3${api}&api_key=c98d68ce201dd1845ce26a43f4f9d9d7&page=${page}&language=${lang}`;
     let data = fetch(url);
     let d = await (await data).json();
     this.setState({

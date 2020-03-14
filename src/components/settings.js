@@ -14,8 +14,8 @@ class Settings extends Component {
   }
 
   render() {
-    let lang = window.localStorage.getItem("lang");
-    let country = window.localStorage.getItem("country");
+    let lang = window.localStorage.getItem("lang") || "en";
+    let country = window.localStorage.getItem("country") || "IN";
 
     return (
       <div className="settings-page-wrapper">

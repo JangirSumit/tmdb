@@ -202,7 +202,7 @@ a {
   justify-content: center;
   display: inline-block;
   padding-top: 10px;
-  height: 35px;
+  height: 34px;
   align-items: center;
   font-size: 14px;
 }
@@ -362,7 +362,7 @@ header .title {
   vertical-align: middle;
   align-items: center;
   align-content: center;
-  width: 85%;
+  width: 87%;
   text-align: left;
   border-bottom: 1px solid #fff;
   padding-bottom: 5px;
