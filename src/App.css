@@ -224,7 +224,8 @@ a {
     margin: 10px;
   }
   div.item.poster.card div.info {
-    height: auto;
+    min-height: 200px;
+    height: 230px;
   }
   .tag-wrapper {
     position: relative !important;
@@ -412,4 +413,18 @@ select option {
 
 select:focus {
   size: 10;
+}
+
+.star-ratings {
+  width: 92%;
+  text-align: center;
+  margin-top: 10px;
+  border-top: 1px solid #d3d3d3;
+  padding-top: 5px;
+  position: absolute;
+  bottom: 5px;
+}
+
+.star-ratings span {
+  padding: 3px;
 }

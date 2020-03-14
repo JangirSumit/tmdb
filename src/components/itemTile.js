@@ -1,5 +1,6 @@
 import React from "react";
 import Tag from "./tag";
+import Stars from "./stars";
 import "../App.css";
 
 function ItemTile(props) {
@@ -62,8 +63,8 @@ function ItemTile(props) {
 
         <p className="overview">
           <span className="desc" title={props.data.overview}>
-            {props.data.overview.length > 300
-              ? props.data.overview.substring(0, 300) + "..."
+            {props.data.overview.length > 200
+              ? props.data.overview.substring(0, 200) + "..."
               : props.data.overview}
           </span>
 
@@ -82,13 +83,17 @@ function ItemTile(props) {
         </p>
         <div
           className="tag-wrapper"
-          style={{ textAlign: "left", position: "absolute", bottom: "15px" }}
+          style={{ textAlign: "left", bottom: "15px" }}
         >
           {props.data.genre_ids.length
             ? props.data.genre_ids.map(gid => (
                 <Tag genres={props.g.genres} key={gid} gid={gid} />
               ))
             : ""}
+        </div>
+        <div className="star-ratings">
+          <Stars vote_average={props.data.vote_average} />{" "}
+          <span style={{ color: "grey" }}>({props.data.vote_count})</span>
         </div>
       </div>
     </div>
