@@ -41,6 +41,8 @@ class App extends Component {
   }, 400);
 
   async componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll.bind(this));
+
     let genres_r = fetch(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=c98d68ce201dd1845ce26a43f4f9d9d7&language=en-US"
     );
@@ -118,6 +120,14 @@ class App extends Component {
     this.setState({ showSettings: false, showMobileMenu: false });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll() {
+    this.setState({ showMobileMenu: false });
+  }
+
   render() {
     return (
       <div className="App">
@@ -128,7 +138,9 @@ class App extends Component {
             alt="logo"
             onClick={event => this.onHomeClick(event)}
           />
-          <div className="title">Community built movie and TV database</div>
+          <div className="title" onClick={event => this.onHomeClick(event)}>
+            Community built movie and TV database
+          </div>
           <img
             src={menuIcon}
             alt="menu"
