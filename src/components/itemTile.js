@@ -38,7 +38,13 @@ function ItemTile(props) {
             {parseInt(props.data.vote_average) * 10}
             <small>%</small>
           </div>
-          <div style={{ display: "inline-block", textAlign: "left" }}>
+          <div
+            style={{
+              display: "inline-block",
+              textAlign: "left",
+              width: "calc(100% - 65px)"
+            }}
+          >
             <a
               id={`movie_${props.data.id}`}
               className="title result"

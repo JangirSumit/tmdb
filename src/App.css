@@ -329,7 +329,7 @@ header .title {
 .mobile-menu {
   width: 80%;
   color: #fff;
-  height: 85%;
+  height: calc(100% - 70px);
   position: absolute;
   right: 0;
   z-index: 10000000000;
@@ -362,7 +362,7 @@ header .title {
   vertical-align: middle;
   align-items: center;
   align-content: center;
-  width: 89%;
+  width: 85%;
   text-align: left;
   border-bottom: 1px solid #fff;
   padding-bottom: 5px;
@@ -384,7 +384,14 @@ select {
   height: 30px;
   width: 300px;
   border-radius: 5px;
+  background-color: #97f8cd;
+  padding: 5px;
 }
+
+select option {
+  border-bottom: 1px solid #f2f2f2;
+}
+
 .settings-page-wrapper p {
   margin-top: 15px;
   margin-bottom: 5px;

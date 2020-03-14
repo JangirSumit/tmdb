@@ -33,7 +33,7 @@ class Settings extends Component {
         <select
           id="language"
           onChange={event => this.onLangChange(event)}
-          value={lang}
+          defaultValue={lang}
         >
           {this.props.langs.map(l => {
             return (
@@ -47,7 +47,7 @@ class Settings extends Component {
         <select
           id="country"
           onChange={event => this.onCountryChange(event)}
-          value={country}
+          defaultValue={country}
         >
           {this.props.countries.map(l => {
             return (
