@@ -1,0 +1,8 @@
+export const LOAD_DATA = "LOAD_DATA";
+export const SHOW_HOME_SCREEN = "SHOW_HOME_SCREEN";
+export const SHOW_SETTINGS = "SHOW_SETTINGS";
+export const MOBILE_MENU_CLICK = "MOBILE_MENU_CLICK";
+export const LOAD_MENU_DATA = "LOAD_MENU_DATA";
+export const INITIAL_LOAD = "INITIAL_LOAD";
+export const SELECTED_MENU = "SELECTED_MENU";
+export const HANDLE_SCROLL = "HANDLE_SCROLL";
